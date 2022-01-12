@@ -6,11 +6,18 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import Test from "./app/Test";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const client = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Test />
+      <QueryClientProvider client={client}>
+        <Test />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
